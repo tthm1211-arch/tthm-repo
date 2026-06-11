@@ -6,7 +6,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
+  title: '管理端',
   markdown: {
   hooks: {
     onBrokenMarkdownImages: 'ignore',
