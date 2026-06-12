@@ -86,6 +86,18 @@ const config = {
           },
         ],
       },
+
+      themes: [
+  [
+    require.resolve('@easyops-cn/docusaurus-search-local'),
+    {
+      hashed: true,
+      language: ['en', 'zh'],
+      highlightSearchTermsOnTargetPage: true,
+      explicitSearchResultPath: true,
+    },
+  ],
+],
       footer: {
         style: 'dark',
         copyright: `Copyright © ${new Date().getFullYear()} Neighbour Express`,
