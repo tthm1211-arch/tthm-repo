@@ -32,7 +32,6 @@ const config = {
     locales: ['en'],
   },
 
-  plugins: ['docusaurus-plugin-image-zoom'],
 
   presets: [
     [
@@ -100,16 +99,6 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
 
-      zoom: {
-        selector: '.markdown img',
-        background: {
-          light: 'rgb(255, 255, 255)',
-          dark: 'rgb(50, 50, 50)',
-        config: {
-          scrollOffset: 1000,  // 滚动超过 1000px 才收回，基本等于不会误触
-        },
-        },
-      },
     }),
 };
 
