@@ -87,7 +87,7 @@ const config = {
         ],
       },
 
-      themes: [
+  themes: [
   [
     require.resolve('@easyops-cn/docusaurus-search-local'),
     {
