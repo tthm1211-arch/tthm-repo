@@ -92,7 +92,7 @@ export default function HistoryPage() {
                 </th>
                 <th style={{ width: widths[2], position: 'relative' }}>
                   版本描述
-                  <div onMouseDown={(e) => handleMouseDown(2, e)} style={{ position: 'absolute', right: -3, top: 0, height: '100%', width: '6px', cursor: 'col-resize', backgroundColor: dragging === 2 ? '#0366d6' : 'transparent' }} />
+                  <div onMouseDown={(e) => handleMouseDown(2, e)} style={{ position: 'absolute', right: -3, top: 0, height: '100%', width: '10px', cursor: 'col-resize', backgroundColor: dragging === 2 ? '#0366d6' : 'transparent' }} />
                 </th>
                 <th style={{ width: widths[3] }}>时间</th>
               </tr>

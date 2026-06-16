@@ -32,7 +32,6 @@ const config = {
     locales: ['en'],
   },
 
-
   presets: [
     [
       'classic',
@@ -60,7 +59,7 @@ const config = {
 
   themes: [
     [
-      '@easyops-cn/docusaurus-search-local',
+     '@easyops-cn/docusaurus-search-local',
       {
         hashed: true,
         language: ['en', 'zh'],
@@ -86,6 +85,11 @@ const config = {
             position: 'left',
             label: '文档',
           },
+          {
+            to: '/history', 
+            position: 'left',
+            label: '版本历史',
+          },
         ],
       },
 
@@ -98,7 +102,6 @@ const config = {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
       },
-
     }),
 };
 
