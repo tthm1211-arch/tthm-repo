@@ -100,7 +100,7 @@ export default function HistoryPage() {
             <tbody>
               {commits.map((commit, idx) => (
                 <tr key={idx} className={idx % 2 === 1 ? styles.alternate : ''}>
-                  <td>{commit.seq}</td>
+                  <td>{idx + 1}</td>
                   <td>{commit.version}</td>
                   <td>{commit.description}</td>
                   <td>{commit.date}</td>
