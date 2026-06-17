@@ -16,7 +16,7 @@ export default function HistoryPage() {
           .map((commit, index) => {
             const message = commit.commit.message;
             if (!message.includes('+')) {
-              return null; // 不符合格式，过滤掉
+              return null; 
             }
             const [version, description] = message.split('+');
             return {
