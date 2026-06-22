@@ -93,10 +93,10 @@ const config = {
         ],
       },
 
-      footer: {
-        style: 'dark',
-        copyright: `Copyright © ${new Date().getFullYear()} Neighbour Express`,
-      },
+      // footer: {
+      //   style: 'light',
+      //   copyright: `Copyright © ${new Date().getFullYear()} Neighbour Express`,
+      // },
 
       prism: {
         theme: prismThemes.github,

@@ -1,64 +1,52 @@
 import React from 'react';
-import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
+import Layout from '@theme/Layout';
+import { ArrowRight, Send } from 'lucide-react';
 
+import styles from './index.module.css';
 
-function CircularText({ text, radius }) {
-  const characters = text.split('');
+function HomepageHeader() {
   return (
-    <div style={{
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      width: radius * 2,
-      height: radius * 2,
-      marginLeft: -radius,
-      marginTop: -radius,
-      animation: 'circular-rotate 10s linear infinite',
-      pointerEvents: 'none',
-    }}>
-      {characters.map((char, index) => {
-        const angle = (index / characters.length) * 360;
-        return (
-          <span
-            key={index}
-            style={{
-              position: 'absolute',
-              left: '50%',
-              top: '50%',
-              transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-${radius}px)`,
-              transformOrigin: '50% 50%',
-              fontSize: '20px',
-              fontWeight: 500,
-              color: '#000',
-            }}
-          >
-            {char}
-          </span>
-        );
-      })}
-    </div>
+    <header className={styles.heroBanner}>
+      {/* Background Effects */}
+      <div className={styles.backgroundEffects}>
+        <div className={styles.blob1}></div>
+        <div className={styles.blob2}></div>
+      </div>
+
+      <div className={styles.heroContent}>
+        <h1 className={styles.heroTitle}>
+          Neighbour Express
+          <span className={styles.gradientText}>Knowledge Base</span>
+        </h1>
+
+        <p className={styles.heroSubtitle}>
+          This documentation is based on the officially released system version v1.0.87. 
+          <br></br>
+          If subsequent version updates result in any interface or functionality differences, please refer to the latest version.
+        </p>
+
+        <div className={styles.buttonGroup}>
+          <Link href="docs/intro" className={styles.primaryButton}>
+            <Send size={20} className={styles.buttonIcon} />
+            Enter
+            <ArrowRight size={20} className={styles.buttonIcon} />
+          </Link>
+        </div>
+      </div>
+    </header>
   );
 }
 
 export default function Home() {
   return (
-    <Layout title="知识库">
-      <main style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 'calc(100vh - var(--ifm-navbar-height))',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        <div style={{ position: 'relative' }}>
-          <CircularText text="NEIGHBOUR EXPRESS · KNOWLEDGE BASE· " radius={140} />
-          <Link to="/docs/intro" style={{ fontSize: '24px', color: '#2e8555', fontWeight: 'bold' }}>
-            进入知识库
-          </Link>
-        </div>
+    <Layout
+      title="	v1.0.87"
+      description="Blockchain Made Simple & Accessible"
+    >
+      <HomepageHeader />
+      <main>
+        {/* 移除 HomepageFeatures */}
       </main>
     </Layout>
   );
