@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
-import { ArrowRight, Send } from 'lucide-react';
 
 import styles from './index.module.css';
 
@@ -23,14 +22,14 @@ function HomepageHeader() {
         <p className={styles.heroSubtitle}>
           This documentation is based on the officially released system version v1.0.87. 
           <br></br>
-          If subsequent version updates result in any interface or functionality differences, please refer to the latest version.
+          If subsequent version updates result in any interface or functionality differences, 
+          <br></br>
+          please refer to the latest version.
         </p>
 
         <div className={styles.buttonGroup}>
           <Link href="docs/intro" className={styles.primaryButton}>
-            <Send size={20} className={styles.buttonIcon} />
-            Enter
-            <ArrowRight size={20} className={styles.buttonIcon} />
+           Enter →
           </Link>
         </div>
       </div>
@@ -41,8 +40,8 @@ function HomepageHeader() {
 export default function Home() {
   return (
     <Layout
-      title="	v1.0.87"
-      description="Blockchain Made Simple & Accessible"
+      title="v1.0.87"
+      description="Neighbour Express Knowledge Base"
     >
       <HomepageHeader />
       <main>
