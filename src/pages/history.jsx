@@ -8,30 +8,41 @@ export default function HistoryPage() {
   const [dragging, setDragging] = useState(null);
   const [startX, setStartX] = useState(0);
 
-  useEffect(() => {
-    fetch('https://api.github.com/repos/tthm1211-arch/tthm-repo/')
-      .then(res => res.json())
-      .then(data => {
-        const parsed = data
-          .map((commit, index) => {
-            const message = commit.commit.message;
-            if (!message.includes('+')) {
-              return null; 
-            }
-            const [version, description] = message.split('+');
-            return {
-              seq: index + 1,
-              version: version.trim(),
-              description: (description || '').trim(),
-              date: new Date(commit.commit.author.date).toLocaleDateString('zh-CN'),
-            };
-          })
-          .filter(Boolean); // 移除null项
-        
-        setCommits(parsed);
+useEffect(() => {
+  async function fetchAllCommits() {
+    let page = 1;
+    let allCommits = [];
+    
+    while (true) {
+      const res = await fetch(
+        `https://api.github.com/repos/tthm1211-arch/tthm-repo/commits?per_page=100&page=${page}`
+      );
+      const data = await res.json();
+      if (!Array.isArray(data) || data.length === 0) break;
+      allCommits = allCommits.concat(data);
+      if (data.length < 100) break; // 最后一页,不足100条说明没有更多了
+      page++;
+    }
+
+    const parsed = allCommits
+      .map((commit, index) => {
+        const message = commit.commit.message;
+        if (!message.includes('+')) return null;
+        const [version, description] = message.split('+');
+        return {
+          seq: index + 1,
+          version: version.trim(),
+          description: (description || '').trim(),
+          date: new Date(commit.commit.author.date).toLocaleDateString('zh-CN'),
+        };
       })
-      .catch(err => console.error('Failed to fetch commits:', err));
-  }, []);
+      .filter(Boolean);
+
+    setCommits(parsed);
+  }
+
+  fetchAllCommits().catch(err => console.error('Failed to fetch commits:', err));
+}, []);
 
   const handleMouseDown = (index, e) => {
     setDragging(index);
