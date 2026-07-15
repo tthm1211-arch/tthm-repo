@@ -9,7 +9,7 @@ export default function HistoryPage() {
   const [startX, setStartX] = useState(0);
 
   useEffect(() => {
-    fetch('https://api.github.com/repos/tthm1211-arch/tthm-repo/commits?per_page=10')
+    fetch('https://api.github.com/repos/tthm1211-arch/tthm-repo/')
       .then(res => res.json())
       .then(data => {
         const parsed = data
