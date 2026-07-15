@@ -20,19 +20,25 @@ function HomepageHeader() {
         </h1>
 
         <p className={styles.heroSubtitle}>
-          This documentation is based on the officially released system version v1.0.87. 
-          <br></br>
-          If subsequent version updates result in any interface or functionality differences, 
-          <br></br>
+          This documentation is based on the officially released system version v1.0.87.
+          <br />
+          If subsequent version updates result in any interface or functionality differences,
+          <br />
           please refer to the latest version.
         </p>
 
         <div className={styles.buttonGroup}>
-          <Link href="docs/intro" className={styles.primaryButton}>
-           Enter →
+          <Link to="/docs/intro" className={styles.primaryButton}>
+            Enter →
           </Link>
         </div>
       </div>
+
+      <img
+        src="/img/ezgif-45913b1f03d287d2.gif"
+        alt="animation"
+        className={styles.cornerGif}
+      />
     </header>
   );
 }
@@ -44,9 +50,7 @@ export default function Home() {
       description="Neighbour Express Knowledge Base"
     >
       <HomepageHeader />
-      <main>
-        {/* 移除 HomepageFeatures */}
-      </main>
+      <main />
     </Layout>
   );
 }

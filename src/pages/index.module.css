@@ -142,7 +142,7 @@
   padding: 1rem 2rem;
   font-size: 1.125rem;
   font-weight: 600;
-  color: #22C55E;
+  color: #22c5a2;
   background: transparent;
   border: 2px solid #22C55E;
   border-radius: 0.5rem;
@@ -221,5 +221,31 @@
   .blob2 {
     width: 200px;
     height: 200px;
+  }
+}
+.cornerGif {
+  position: absolute;
+  left: 60px;
+  bottom: 40px;
+  width: 120px;
+  height: auto;
+  z-index: 10;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media screen and (max-width: 996px) {
+  .cornerGif {
+    right: 24px;
+    bottom: 24px;
+    width: 180px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cornerGif {
+    width: 120px;
+    right: 12px;
+    bottom: 12px;
   }
 }
