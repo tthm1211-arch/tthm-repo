@@ -7,17 +7,21 @@ import styles from './index.module.css';
 function DesktopPet() {
   const petRef = useRef(null);
   const draggingRef = useRef(false);
+  const canEnterDocsRef = useRef(false);
   const offsetRef = useRef({x: 0, y: 0});
 
   const [position, setPosition] = useState({x: 40, y: 420});
   const [isDragging, setIsDragging] = useState(false);
+  const [canEnterDocs, setCanEnterDocs] = useState(false);
 
   useEffect(() => {
     const savedPosition = localStorage.getItem('desktop-pet-position');
 
     if (savedPosition) {
       try {
-        setPosition(JSON.parse(savedPosition));
+        const parsedPosition = JSON.parse(savedPosition);
+
+        setPosition(parsedPosition);
         return;
       } catch {
         localStorage.removeItem('desktop-pet-position');
@@ -34,7 +38,9 @@ function DesktopPet() {
 
   useEffect(() => {
     const handleMouseMove = (event) => {
-      if (!draggingRef.current || !petRef.current) return;
+      if (!draggingRef.current || !petRef.current) {
+        return;
+      }
 
       const petWidth = petRef.current.offsetWidth;
       const petHeight = petRef.current.offsetHeight;
@@ -42,17 +48,46 @@ function DesktopPet() {
       const nextX = event.clientX - offsetRef.current.x;
       const nextY = event.clientY - offsetRef.current.y;
 
+      const limitedX = Math.max(
+        0,
+        Math.min(nextX, window.innerWidth - petWidth),
+      );
+
+      const limitedY = Math.max(
+        0,
+        Math.min(nextY, window.innerHeight - petHeight),
+      );
+
       setPosition({
-        x: Math.max(0, Math.min(nextX, window.innerWidth - petWidth)),
-        y: Math.max(0, Math.min(nextY, window.innerHeight - petHeight)),
+        x: limitedX,
+        y: limitedY,
       });
+
+      // 桌宠中心进入页面右侧 15% 区域后，松开可进入知识库
+      const petCenterX = limitedX + petWidth / 2;
+      const enterThreshold = window.innerWidth * 0.85;
+      const isReadyToEnter = petCenterX >= enterThreshold;
+
+      canEnterDocsRef.current = isReadyToEnter;
+      setCanEnterDocs(isReadyToEnter);
     };
 
     const handleMouseUp = () => {
-      if (!draggingRef.current) return;
+      if (!draggingRef.current) {
+        return;
+      }
 
       draggingRef.current = false;
       setIsDragging(false);
+
+      if (canEnterDocsRef.current) {
+        canEnterDocsRef.current = false;
+        setCanEnterDocs(false);
+        localStorage.removeItem('desktop-pet-position');
+
+        window.location.href = '/docs/intro';
+        return;
+      }
 
       setPosition((currentPosition) => {
         localStorage.setItem(
@@ -74,7 +109,9 @@ function DesktopPet() {
   }, []);
 
   const handleMouseDown = (event) => {
-    if (!petRef.current) return;
+    if (!petRef.current) {
+      return;
+    }
 
     const rect = petRef.current.getBoundingClientRect();
 
@@ -84,7 +121,11 @@ function DesktopPet() {
     };
 
     draggingRef.current = true;
+    canEnterDocsRef.current = false;
+
     setIsDragging(true);
+    setCanEnterDocs(false);
+
     event.preventDefault();
   };
 
@@ -93,9 +134,13 @@ function DesktopPet() {
       ref={petRef}
       src="/img/ezgif-45913b1f03d287d2.gif"
       alt="Neighbour Express desktop pet"
-      className={`${styles.desktopPet} ${
-        isDragging ? styles.desktopPetDragging : ''
-      }`}
+      className={[
+        styles.desktopPet,
+        isDragging ? styles.desktopPetDragging : '',
+        canEnterDocs ? styles.desktopPetReady : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
@@ -120,13 +165,27 @@ function HomepageHeader() {
           <span className={styles.gradientText}>Knowledge Base</span>
         </h1>
 
+        {/* <div className={styles.versionBadge}>
+        管理端当前版本 v1.0.90
+        </div> */}
+
         <p className={styles.heroSubtitle}>
+          当前版本 v1.0.90
+        <br />
+          管理端各模块均受账号权限控制
+        <br />
+          若无法查看相关页面或功能，请联系系统管理员
+        <br />
+          为当前账号配置相应权限后再进行操作
+        </p>
+
+        {/* <p className={styles.heroSubtitle}>
           管理端当前版本：v1.0.90
           <br />
           管理端各模块均受账号权限控制。若无法查看相关页面或功能，
           <br />
           请联系系统管理员为当前账号配置相应权限后再进行操作。
-        </p>
+        </p> */}
 
         <div className={styles.buttonGroup}>
           <Link to="/docs/intro" className={styles.primaryButton}>
