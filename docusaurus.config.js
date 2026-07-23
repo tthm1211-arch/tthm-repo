@@ -69,17 +69,17 @@ const config = {
     ],
   ],
 
-  themes: [
-    [
-     '@easyops-cn/docusaurus-search-local',
-      {
-        hashed: true,
-        language: ['en', 'zh'],
-        highlightSearchTermsOnTargetPage: true,
-        explicitSearchResultPath: true,
-      },
-    ],
-  ],
+  // themes: [
+  //   [
+  //    '@easyops-cn/docusaurus-search-local',
+  //     {
+  //       hashed: true,
+  //       language: ['en', 'zh'],
+  //       highlightSearchTermsOnTargetPage: true,
+  //       explicitSearchResultPath: true,
+  //     },
+  //   ],
+  // ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -87,6 +87,14 @@ const config = {
       colorMode: {
         respectPrefersColorScheme: true,
       },
+
+      algolia: {
+      appId: 'MLG5OAAX6Z',
+      apiKey: '76d51f5192978837e562263540e6a4f5',
+      indexName: 'testtest',
+      contextualSearch: false,
+      searchPagePath: 'search',
+    },
 
       navbar: {
         title: '首页',
