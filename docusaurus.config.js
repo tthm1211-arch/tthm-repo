@@ -33,6 +33,7 @@ const config = {
 
   url: 'https://tthm-repo.pages.dev',
   baseUrl: '/',
+  trailingSlash: false,
 
   organizationName: 'facebook',
   projectName: 'docusaurus',
