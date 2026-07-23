@@ -31,7 +31,7 @@ const config = {
     v4: true,
   },
 
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://tthm-repo.pages.dev',
   baseUrl: '/',
 
   organizationName: 'facebook',
