@@ -95,6 +95,8 @@ const config = {
       indexName: 'testtest',
       contextualSearch: false,
       searchPagePath: 'search',
+
+      insights: true,
     },
 
       navbar: {
