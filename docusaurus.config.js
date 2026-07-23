@@ -7,6 +7,18 @@ import {themes as prismThemes} from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: '管理端',
+  
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'algolia-site-verification',
+        content: '2500D73AAAC1DECE',
+      },
+    },
+  ],
+  
+  
   markdown: {
     hooks: {
       onBrokenMarkdownImages: 'ignore',
